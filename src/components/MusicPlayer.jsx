@@ -1,24 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import React, { useState, useEffect, useRef } from 'react';
+import { Button, Box } from '@mui/material';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
+import './MusicPlayer.css'; // Link to the CSS file for animations
 
 const MusicPlayer = () => {
-  const [currentTrack] = useState({
-    title: "Beethoven - Symphony No. 5",
-    composer: "Ludwig van Beethoven",
-    audioUrl: "https://ks.imslp.net/files/imglnks/usimg/4/4d/IMSLP515234-PMLP01495-Beethoven_Symphony_5_mvt1_pno_reduction.mp3" // Public domain file hosted by IMSLP
-  });
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(new Audio('https://www.mfiles.co.uk/mp3-downloads/gs-cd-track2.mp3'));
+
+  const togglePlay = () => {
+    const audio = audioRef.current;
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    const handleEnded = () => setIsPlaying(false);
+
+    audio.addEventListener('ended', handleEnded);
+    return () => {
+      audio.removeEventListener('ended', handleEnded);
+    };
+  }, []);
 
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h2>{currentTrack.title}</h2>
-      <p>by {currentTrack.composer}</p>
-      <audio controls src={currentTrack.audioUrl}>
-        Your browser does not support the audio element.
-      </audio>
-    </div>
+    <Box className={`music-player ${isPlaying ? 'playing' : ''}`}>
+      <Button
+        variant="outlined"
+        color="primary"
+        size="large"
+        className="play-button"
+        onClick={togglePlay}
+      >
+        {isPlaying ? (
+          <PauseCircleOutlineIcon style={{ fontSize: 60 }} /> // Adjust the fontSize here
+        ) : (
+          <PlayCircleOutlineIcon style={{ fontSize: 60 }} />  // Adjust the fontSize here
+        )}
+      </Button>
+    </Box>
   );
 };
 

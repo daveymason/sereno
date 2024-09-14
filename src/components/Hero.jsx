@@ -5,7 +5,7 @@ import backgroundImage from '../assets/heroBg.png';
 import logo from '../assets/logo.png';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
+import MusicPlayer from './MusicPlayer';
 // Importing Google Fonts
 const serenofont = {
   fontFamily: '"Playfair Display", serif',
@@ -124,9 +124,7 @@ function Hero() {
           >
             Providing timeless classical music through modern technology with a focus on accessibility, simplicity, and privacy.
           </Typography>
-          <Button variant="contained" color="primary" size="large">
-            Explore Music
-          </Button>
+          <MusicPlayer />
         </Box>
       </Box>
     </Box>
