@@ -3,16 +3,25 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#D4AF37', // Gold color as the primary
+      main: '#D4AF37', 
     },
-    // Optionally, you can also define secondary and other colors here
     secondary: {
-      main: '#283655', // Deep muted navy (optional)
+      main: '#283655', 
     },
   },
   typography: {
-    // Optionally customize typography here for a classic look
     fontFamily: '"Roboto", "Playfair Display", serif',
+  },
+  components: {
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          maxWidth: '100% !important', 
+          padding: '0 16px', 
+          margin: '0 auto',
+        },
+      },
+    },
   },
 });
 
