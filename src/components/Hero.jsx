@@ -81,7 +81,7 @@ function Hero() {
           backgroundColor: 'rgba(0, 0, 0, 0.2)', 
         }}
       >
-        {/* Text Box for better readability */}
+        {/* Left Column*/}
         <Box
           sx={{
             backgroundColor: 'rgba(255, 255, 255, 0.9)', 
@@ -99,8 +99,9 @@ function Hero() {
               fontFamily: 'Tangerine, cursive',
             }}
           >
-           Sereno
+           Sereno              
           </Typography>
+
           <Typography
             variant="h5"
             component="p"
@@ -113,6 +114,7 @@ function Hero() {
           >
             Music for the soul.
           </Typography>
+
           <Typography
             variant="body1"
             component="p"
@@ -123,8 +125,20 @@ function Hero() {
             }}
           >
             Providing timeless classical music through modern technology with a focus on accessibility, simplicity, and privacy.
+            <MusicPlayer />
           </Typography>
-          <MusicPlayer />
+
+            {/* Right Column */}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              mt: 4,
+            }}
+          >
+
+          </Box>
         </Box>
       </Box>
     </Box>
